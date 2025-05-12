@@ -1,17 +1,27 @@
-// Uncomment the code below and write your tests
-/* import {  simpleCalculator, Action } from './index';
+import {  simpleCalculator, Action } from './index';
 
 const testCases = [
     { a: 1, b: 2, action: Action.Add, expected: 3 },
     { a: 2, b: 2, action: Action.Add, expected: 4 },
-    { a: 3, b: 2, action: Action.Add, expected: 5 },
-    // continue cases for other actions    
-]; */
+    { a: 3, b: 2, action: Action.Add, expected: 5 }, 
+    { a: 10, b: 34, action: Action.Subtract, expected: -24 },
+    { a: -2, b: -3, action: Action.Subtract, expected: 1 },
+    { a: 5, b: -2, action: Action.Multiply, expected: -10 },
+    { a: 3, b: 0, action: Action.Divide, expected: Infinity },
+    { a: 6, b: 0, action: Action.Exponentiate, expected: 1 }  
+]; 
 
 describe('simpleCalculator', () => {
-  // This test case is just to run this test suite, remove it when you write your own tests
-  test('should blah-blah', () => {
-    expect(true).toBe(true);
-  });
-  // Consider to use Jest table tests API to test all cases above
+    test.each(testCases)('Should return $expected for $action of $a and $b', ({ a, b, action, expected }) => {
+      const result = simpleCalculator({ a, b, action });
+      expect(result).toBe(expected);
+    });
+    test('should return null for invalid action', () => {
+      const result = simpleCalculator({ a: 2, b: 3, action: 'logbase' });
+      expect(result).toBeNull();
+    });
+    test('should return null for invalid arguments', () => {
+      const result = simpleCalculator({ a: 'abc', b: '23', action: Action.Add });
+      expect(result).toBeNull();
+    });
 });
