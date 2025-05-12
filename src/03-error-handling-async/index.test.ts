@@ -21,7 +21,7 @@ describe('throwError', () => {
 describe('throwCustomError', () => {
   test('should throw custom error', () => {
     expect(() => throwCustomError()).toThrow(MyAwesomeError);
-    expect(() => throwCustomError()).toThrow('This is my awesome custom error!!');
+    expect(() => throwCustomError()).toThrow('This is my awesome custom error!');
   });
 });
 
